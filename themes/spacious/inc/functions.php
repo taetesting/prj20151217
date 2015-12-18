@@ -58,7 +58,7 @@ function spacious_scripts_styles_method() {
 	 */
 	wp_register_script( 'jquery_cycle', SPACIOUS_JS_URL . '/jquery.cycle.all.min.js', array( 'jquery' ), '3.0.3', true );
 
-   wp_register_style( 'google_fonts', '//fonts.googleapis.com/css?family=Lato' );
+   // wp_register_style( 'google_fonts', '//fonts.googleapis.com/css?family=Lato' ); // XUAN
 
 	/**
 	 * Enqueue Slider setup js file.
@@ -69,7 +69,7 @@ function spacious_scripts_styles_method() {
 	wp_enqueue_script( 'spacious-navigation', SPACIOUS_JS_URL . '/navigation.js', array( 'jquery' ), false, true );
 	wp_enqueue_script( 'spacious-custom', SPACIOUS_JS_URL. '/spacious-custom.js', array( 'jquery' ) );
 
-	wp_enqueue_style( 'google_fonts' );
+	// wp_enqueue_style( 'google_fonts' ); // XUAN
 
    $spacious_user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 	if(preg_match('/(?i)msie [1-8]/',$spacious_user_agent)) {

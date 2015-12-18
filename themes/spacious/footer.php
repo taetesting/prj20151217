@@ -39,14 +39,30 @@
             //  alert('hello');
             // });
         });
-        jQuery(window).scroll(function() {
-            if (jQuery(this).scrollTop() > 1){  
-                jQuery('header').addClass("sticky");
-              }
-              else{
-                jQuery('header').removeClass("sticky");
-              }
-            });
+
+        jQuery(function(){
+            var shrinkHeader = 300;
+            jQuery(window).scroll(function() {
+                var scroll = getCurrentScroll();
+                    if (scroll >= shrinkHeader) {
+                       jQuery('#header-text-nav-container').addClass('shrink');
+                    } else {
+                        jQuery('#header-text-nav-container').removeClass('shrink');
+                    }
+              });
+            function getCurrentScroll() {
+                return window.pageYOffset || document.documentElement.scrollTop;
+            }
+        });
+
+        // jQuery(window).scroll(function() {
+        //     if (jQuery(this).scrollTop() > 1){  
+        //         jQuery('header').addClass("sticky");
+        //       }
+        //       else{
+        //         jQuery('header').removeClass("sticky");
+        //       }
+        //     });
     </script>
     <!-- <button id="btnBottom">Click</button> -->
     <?php wp_footer(); ?>
