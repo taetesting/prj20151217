@@ -34,35 +34,43 @@
         <a href="#masthead" id="scroll-up"></a> 
     </div><!-- #page -->
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            // jQuery('#btnBottom').click(function(){
-            //  alert('hello');
-            // });
-        });
+        // jQuery(function(){
+        //     var shrinkHeader = 100;
+        //     jQuery(window).scroll(function() {
+        //         var scroll = getCurrentScroll();
+        //             if (scroll >= shrinkHeader) {
+        //                jQuery('#header-text-nav-container').addClass('shrink');
+        //             } else {
+        //                 jQuery('#header-text-nav-container').removeClass('shrink');
+        //             }
+        //       });
+        //     function getCurrentScroll() {
+        //         return window.pageYOffset || document.documentElement.scrollTop;
+        //     }
+        // });
 
-        jQuery(function(){
-            var shrinkHeader = 300;
-            jQuery(window).scroll(function() {
-                var scroll = getCurrentScroll();
-                    if (scroll >= shrinkHeader) {
-                       jQuery('#header-text-nav-container').addClass('shrink');
-                    } else {
-                        jQuery('#header-text-nav-container').removeClass('shrink');
-                    }
-              });
-            function getCurrentScroll() {
-                return window.pageYOffset || document.documentElement.scrollTop;
+        jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > 1){  
+                jQuery('#header-text-nav-container').addClass("shrink");
+              }
+              else{
+                jQuery('#header-text-nav-container').removeClass("shrink");
+              }
+            });
+        jQuery(function() {
+            jQuery('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = jQuery(this.hash);
+                    target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+                    if (target.length) {
+                    jQuery('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+              }
             }
+            });
         });
-
-        // jQuery(window).scroll(function() {
-        //     if (jQuery(this).scrollTop() > 1){  
-        //         jQuery('header').addClass("sticky");
-        //       }
-        //       else{
-        //         jQuery('header').removeClass("sticky");
-        //       }
-        //     });
     </script>
     <!-- <button id="btnBottom">Click</button> -->
     <?php wp_footer(); ?>
