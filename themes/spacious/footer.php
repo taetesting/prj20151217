@@ -9,7 +9,7 @@
  * @since Spacious 1.0
  */
 ?>
-        </div><!-- .inner-wrap -->
+        <!-- </div> --><!-- .inner-wrap -->
     </div><!-- #main -->    
     <?php do_action( 'spacious_before_footer' ); ?>
         <footer id="colophon" class="clearfix"> 
@@ -63,12 +63,12 @@
                     var target = jQuery(this.hash);
                     target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
                     if (target.length) {
-                    jQuery('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-              }
-            }
+                        jQuery('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
             });
         });
     </script>

@@ -150,4 +150,4 @@ wp_head();
     <?php do_action( 'spacious_after_header' ); ?>
     <?php do_action( 'spacious_before_main' ); ?>
     <div id="main" class="clearfix">
-        <div class="inner-wrap">
+        <!-- <div class="inner-wrap"> -->

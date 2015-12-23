@@ -448,13 +448,20 @@ add_action( 'spacious_footer_copyright', 'spacious_footer_copyright', 10 );
  */
 if ( ! function_exists( 'spacious_footer_copyright' ) ) :
 function spacious_footer_copyright() {
-	$site_link = '<a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" ><span>' . get_bloginfo( 'name', 'display' ) . '</span></a>';
+	$site_link = '<a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" ><span class="copyright-site-name">' . get_bloginfo( 'name', 'display' ) . '</span></a>';
 
 	$wp_link = '<a href="'.esc_url( 'http://wordpress.org' ).'" target="_blank" title="' . esc_attr__( 'WordPress', 'spacious' ) . '"><span>' . __( 'WordPress', 'spacious' ) . '</span></a>';
 
-	$tg_link =  '<a href="'.esc_url( 'http://themegrill.com/themes/spacious' ).'" target="_blank" title="'.esc_attr__( 'ThemeGrill', 'spacious' ).'" rel="designer"><span>'.__( 'ThemeGrill', 'spacious') .'</span></a>';
+	$fb_link = '<a href="" class="social-link fticon-fblink"></a>';
+	$tw_link = '<a href="" class="social-link fticon-twlink"></a>';
+	$social_link = $fb_link . $tw_link; 
 
-	$default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s.', 'spacious' ), date( 'Y' ), $site_link ).' '.sprintf( __( 'Powered by %s.', 'spacious' ), $wp_link ).' '.sprintf( __( 'Theme: %1$s by %2$s.', 'spacious' ), 'Spacious', $tg_link );
+	$dev_link = '';
+	// $tg_link =  '<a href="'.esc_url( 'http://themegrill.com/themes/spacious' ).'" target="_blank" title="'.esc_attr__( 'ThemeGrill', 'spacious' ).'" rel="designer"><span>'.__( 'ThemeGrill', 'spacious') .'</span></a>';
+
+	// $default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s.', 'spacious' ), date( 'Y' ), $site_link ).' '.sprintf( __( 'Powered by %s.', 'spacious' ), $wp_link ).' '.sprintf( __( 'Theme: %1$s by %2$s.', 'spacious' ), 'Spacious', $tg_link );
+	
+	$default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s. All Rights Reversed. %3$s', 'spacious' ), date( 'Y' ), $site_link, $social_link );
 
 	$spacious_footer_copyright = '<div class="copyright">'.$default_footer_value.'</div>';
 	echo $spacious_footer_copyright;
