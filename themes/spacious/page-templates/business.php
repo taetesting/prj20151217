@@ -164,9 +164,23 @@
                 <div class="section-header">
                     <h3>TIN TỨC & SỰ KIỆN</h3>
                 </div>
-                <div>
-                    <a href="#" class="sheet-nhac"><div class="category-icon"></div>SHEET NHẠC</a>
-                    <a href="#" class="sheet-demo">SHEET NHẠC</a>
+                <div class="category-news">
+                    <a href="#" class="category-news-item">SHEET NHẠC</a>
+                    <a href="#" class="category-kt-item">KIẾN THỨC BỔ ÍCH</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="latest-news">
+                    <div class="post-image">
+                        <a href="#">
+                            <img src="/wp-content/themes/spacious/img/course-img-2.png">
+                        </a>
+                    </div>
+                    <div class="post-summary">
+                        <a href="#"><h2>Lịch sử đàn guitar</h2></a>
+                        <p>Đàn ghi-ta (tiếng Pháp: guitare; tiếng Anh: guitar), còn được biết đến dưới cái tên Tây Ban cầm (西班琴), vốn xuất xứ là một nhạc cụ có cách đây hơn 5000 năm (loại ghi-ta cổ), sau này người Tây Ban Nha mới cải tiến nó thành đàn ghi-ta ngày nay. Đàn ghi-ta ngày nay có 6 dây, tuy nhiên vẫn tồn tại những loại đàn ghi-ta có 4, 7, 8, 10 và 12 dây.</p>
+                        <a href="#" class="readmore">READ MORE</a>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </section>

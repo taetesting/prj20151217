@@ -2326,3 +2326,71 @@ a.sheet-demo {
     background-size: 104px 23px;
     background-position: -20px 0;
 }
+
+/*==DEMO==*/
+.category-news {
+    padding: 30px 0;
+    overflow: hidden;
+
+}
+a.category-news-item {
+    padding: 10px 50px 10px 70px;
+    border: 1px solid #000;
+    color: #000;
+    background: url("img/sheet-nhac-bk.png") no-repeat 40px 7px;
+    margin: 0 10px;
+    float: right;
+}
+a.category-news-item:hover {
+    background: url("img/sheet-nhac-org.png") no-repeat 40px 7px;
+    border: 1px solid #ee5a35;
+    color: #ee5a35;
+}
+a.category-kt-item {
+    padding: 10px 22px 10px 51px;
+    border: 1px solid #000;
+    color: #000;
+    background: url("img/kien-thuc-bk.png") no-repeat 12px 7px;
+    margin: 0 10px;
+    float: right;
+}
+a.category-kt-item:hover {
+    background: url("img/kien-thuc-org.png") no-repeat 12px 7px;
+    border: 1px solid #ee5a35;
+    color: #ee5a35;
+}
+.latest-news {
+    padding: 10px 0;
+}
+.latest-news .post-image {
+    width: 30%;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    float: left;
+}
+.latest-news .post-image a {
+
+}
+.latest-news .post-image img {
+    position: absolute;
+    width: 460px;
+    top: -10px;
+    left: -10px;
+}
+.post-summary {
+
+}
+.post-summary h2 {
+    font-size: 24px;
+    /*font-weight: 600;*/
+}
+.readmore {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #000;
+    font-size: 12px;
+}
+.readmore:hover {
+    background-color: #ee5a35;
+}
