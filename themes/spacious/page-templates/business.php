@@ -86,27 +86,77 @@
                 <div class="section-header">
                     <h3>CHƯƠNG TRÌNH HỌC</h3>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <style type="text/css">
+                    .course-wrapper {
+                        overflow: hidden;
+                        height: 600px;
+                    }
+                    .item-wrapper {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        height: 300px;
+                        width: 50%;
+                    }
+                    .item-wrapper .item-img {
+                        width: 50%;
+                        height: 100%;
+                        box-resizing: border-box;
+                        border: 1px solid red;
+                        position: absolute;
+                        overflow: hidden;
+                        top: 0;
+                        right: 0;
+                    }
+                    .item-wrapper .item-img img {
+                        height: 400px;
+                        width: 400px;
+                        top: 50%;
+                        left: 50%;
+                        display: block;
+                    }
+                    /*@media only screen and (min-width: 1366px)*/
+                    @media screen and (max-width: 1308px) {
+                        .course-wrapper {
+                            margin: 0 auto;
+                            position: relative;
+                        }
+                    }
+                </style>
+                <div class="course">
+                    <div class="course-wrapper">
+                        <a href="#" class="item-wrapper">
+                            <div class="item-arrow-right"></div>
+                            <div class="item-img">
+                                <img src="/wp-content/themes/spacious/img/course-img-1.png" />
+                            </div>
+                            <div class="item-txt">
+                                
+                            </div>
+                        </a>
+                        <a href="#" class="item-wrapper">
+                            <div class="item-arrow-right"></div>
+                            <div class="item-img">
+                                <img src="/wp-content/themes/spacious/img/course-img-1.png" />
+                            </div>
+                            <div class="item-txt">
+                                
+                            </div>
+                        </a>
+                        <!-- <div class="first-row">
+                            
+                            <div class="row-item img-item">
+                                
+                            </div>
+                            <div class="row-item text-item">
+                                
+                            </div>
+                            <div class="row-item img-item">
+                                
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
             </div>
         </section>
         <section id="tin-tuc-su-kien" class="section default">
@@ -114,13 +164,10 @@
                 <div class="section-header">
                     <h3>TIN TỨC & SỰ KIỆN</h3>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <div>
+                    <a href="#" class="sheet-nhac"><div class="category-icon"></div>SHEET NHẠC</a>
+                    <a href="#" class="sheet-demo">SHEET NHẠC</a>
+                </div>
             </div>
         </section>
         <section id="gallery" class="section default">

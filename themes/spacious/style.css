@@ -2126,8 +2126,9 @@ a#scroll-up:hover {
     background-position: bottom;
     background-size: 366px;
     background-repeat: no-repeat;
-    height: 80px;
+    /*height: 80px;*/
     margin: 20px 0;
+    padding: 0 0 40px;
 }
 /*== SECTIONS ==*/
 .section.default {
@@ -2288,4 +2289,40 @@ a.fticon-fblink {
 }
 a.fticon-twlink {
     background: url("img/tw-icon.png");
+}
+/*== TIN TUC & SU KIEN ==*/
+.sheet-nhac {
+    color: #000;
+    display: block;
+    border: 1px solid #000;
+    padding: 10px;
+
+}
+.category-icon {
+    background: url("img/category-news.png");
+    background-repeat: no-repeat;
+    background-size: 104px 23px;
+    background-position: 0 0;
+    padding:0px;
+    float: left;
+    height: 23px;
+    width: 18px;
+    margin: 0 10px 0 0;
+    color: #000;
+}
+a.sheet-nhac:hover {
+    /*background-position: 0 23px;*/
+    color: #EE5A35;
+}
+a.sheet-nhac:hover .category-icon {
+    background: url("img/category-news.png");
+    background-repeat: no-repeat;
+    background-size: 104px 23px;
+    background-position: -20px 0;
+}
+a.sheet-demo {
+    background: url("img/category-news.png");
+    background-repeat: no-repeat;
+    background-size: 104px 23px;
+    background-position: -20px 0;
 }
