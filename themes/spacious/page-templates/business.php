@@ -56,8 +56,8 @@
                     <div class="about-first-text">
                         <p>Lời ngỏ!</p>
                         <p>TRUNG TÂM ÂM NHẠC PHANXICO được thành lập từ tháng 3 / 2009. Với mục đích đưa âm nhạc đến gần hơn với mọi người, là nơi giải trí, thư giản gặp gỡ và dao lưu sau một ngày làm việc mệt nhọc. Cho tới nay Trung Tâm rất vinh dữ đã đào tạo được gần 2 ngàn học viên từ những em 5, 6 tuổi cho tới những học sinh, sinh viên, các dấng tung niên hay những cô chú lớn tuổi…. Đặc biệt TRUNG TÂM PHANXCO rất vui mừng khi mỗi năm TRUNG TÂM đã đào tạo khoảng 15 học viên thi đậu vào các trường âm nhac TP, cùng với những giải thưởng cấp Phường, Quận các các em học sinh. Đó là niềm hạnh phúc và là thành quả...</p>
-                        <a class="readmore" href="#">
-                            <img src="wp-content/themes/spacious/img/readmore.png" />
+                        <a class="readmore" href="#">READ MORE
+                            <!-- <img src="wp-content/themes/spacious/img/readmore.png" /> -->
                         </a>
                     </div>
                     <div class="about-first-video">
@@ -86,75 +86,53 @@
                 <div class="section-header">
                     <h3>CHƯƠNG TRÌNH HỌC</h3>
                 </div>
-                <style type="text/css">
-                    .course-wrapper {
-                        overflow: hidden;
-                        height: 600px;
-                    }
-                    .item-wrapper {
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        height: 300px;
-                        width: 50%;
-                    }
-                    .item-wrapper .item-img {
-                        width: 50%;
-                        height: 100%;
-                        box-resizing: border-box;
-                        border: 1px solid red;
-                        position: absolute;
-                        overflow: hidden;
-                        top: 0;
-                        right: 0;
-                    }
-                    .item-wrapper .item-img img {
-                        height: 400px;
-                        width: 400px;
-                        top: 50%;
-                        left: 50%;
-                        display: block;
-                    }
-                    /*@media only screen and (min-width: 1366px)*/
-                    @media screen and (max-width: 1308px) {
-                        .course-wrapper {
-                            margin: 0 auto;
-                            position: relative;
-                        }
-                    }
-                </style>
                 <div class="course">
                     <div class="course-wrapper">
-                        <a href="#" class="item-wrapper">
-                            <div class="item-arrow-right"></div>
-                            <div class="item-img">
+                        <a class="course-item">
+                            <div class="course-item-content course-item-img course-item-right">
                                 <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
-                            <div class="item-txt">
-                                
+                            <div class="course-item-arrow course-item-arrow-orange"></div>
+                            <div class="course-item-content course-item-txt course-item-left">
+                                <div class="course-item-text">
+                                    THANH NHẠC
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="item-wrapper">
-                            <div class="item-arrow-right"></div>
-                            <div class="item-img">
+                        <a class="course-item">
+                            <div class="course-item-content course-item-img course-item-left">
                                 <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
-                            <div class="item-txt">
-                                
+                            <div class="course-item-arrow course-item-arrow-grey"></div>
+                            <div class="course-item-content course-item-txt course-item-right">
+                                <div class="course-item-text">
+                                    GUITAR
+                                </div>
                             </div>
                         </a>
-                        <!-- <div class="first-row">
-                            
-                            <div class="row-item img-item">
-                                
+                        <a class="course-item">
+                            <div class="course-item-content course-item-img course-item-left">
+                                <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
-                            <div class="row-item text-item">
-                                
+                            <div class="course-item-arrow course-item-arrow-grey"></div>
+                            <div class="course-item-content course-item-txt course-item-right">
+                                <div class="course-item-text">
+                                    GUITAR
+                                </div>
                             </div>
-                            <div class="row-item img-item">
-                                
+                        </a>
+                        <a class="course-item">
+                            <div class="course-item-content course-item-img course-item-right">
+                                <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
-                        </div> -->
+                            <div class="course-item-arrow course-item-arrow-orange"></div>
+                            <div class="course-item-content course-item-txt course-item-left">
+                                <div class="course-item-text">
+                                    THANH NHẠC
+                                </div>
+                            </div>
+                        </a>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
@@ -184,26 +162,33 @@
                 </div>
                 <div class="post-more">
                     <div class="previous-post load-more-post-icon">
-                        <a href="#"></a>
+                        <a></a>
                     </div>
                     <div class="post-content ">
                         <div class="post-item ">
-                            
+                            <a href="#">
+                                <img src="/wp-content/themes/spacious/img/course-img-2.png">
+                            </a>
                         </div>
                         <div class="post-item ">
-                            
+                            <a href="#">
+                                <img src="/wp-content/themes/spacious/img/course-img-2.png">
+                            </a>
                         </div>
                         <div class="post-item tg-one-thirds">
-                            
+                            <a href="#">
+                                <img src="/wp-content/themes/spacious/img/course-img-2.png">
+                            </a>
                         </div>
                     </div>
                     <div class="next-post load-more-post-icon">
-                        <a href="#"></a>
+                        <a></a>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </section>
-        <section id="gallery" class="section default">
+        <!-- <section id="gallery" class="section default">
             <div class="inner-wrap">
                 <div class="section-header">
                     <h3>GALLERY</h3>
@@ -223,7 +208,7 @@
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
             </div>
-        </section>
+        </section> -->
         <section id="lien-he" class="section default">
             <div class="inner-wrap">
                 <div class="section-header">

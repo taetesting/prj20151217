@@ -1,18 +1,24 @@
 jQuery(document).ready(function(){
-	jQuery("#scroll-up").hide();
-	jQuery(function () {
-		jQuery(window).scroll(function () {
-			if (jQuery(this).scrollTop() > 1000) {
-				jQuery('#scroll-up').fadeIn();
-			} else {
-				jQuery('#scroll-up').fadeOut();
-			}
-		});
-		jQuery('a#scroll-up').click(function () {
-			jQuery('body,html').animate({
-				scrollTop: 0
-			}, 800);
-			return false;
-		});
-	});
+    jQuery("#scroll-up").hide();
+    jQuery(function () {
+        jQuery(window).scroll(function () {
+            if (jQuery(this).scrollTop() > 1000) {
+                jQuery('#scroll-up').fadeIn();
+            } else {
+                jQuery('#scroll-up').fadeOut();
+            }
+        });
+        jQuery('a#scroll-up').click(function () {
+            jQuery('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+        jQuery('.previous-post a').click(function() {
+            alert('Previous post');
+        });
+        jQuery('.next-post a').click(function() {
+            alert('Next post');
+        });
+    });
 });
