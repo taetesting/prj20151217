@@ -14,11 +14,11 @@ jQuery(document).ready(function(){
             }, 800);
             return false;
         });
-        jQuery('.previous-post a').click(function() {
-            alert('Previous post');
-        });
-        jQuery('.next-post a').click(function() {
-            alert('Next post');
-        });
+        // jQuery('.previous-post a').click(function() {
+        //     alert('Previous post');
+        // });
+        // jQuery('.next-post a').click(function() {
+        //     alert('Next post');
+        // });
     });
 });

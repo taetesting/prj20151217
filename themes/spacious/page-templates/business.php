@@ -11,7 +11,6 @@
 ?>
 
 <?php get_header(); ?>
-
 <div id="content" class="clearfix">
     <?php 
     if( is_active_sidebar( 'spacious_business_page_top_section_sidebar' ) ) {
@@ -54,31 +53,57 @@
                 </div>
                 <div class="about-first">
                     <div class="about-first-text">
-                        <p>Lời ngỏ!</p>
-                        <p>TRUNG TÂM ÂM NHẠC PHANXICO được thành lập từ tháng 3 / 2009. Với mục đích đưa âm nhạc đến gần hơn với mọi người, là nơi giải trí, thư giản gặp gỡ và dao lưu sau một ngày làm việc mệt nhọc. Cho tới nay Trung Tâm rất vinh dữ đã đào tạo được gần 2 ngàn học viên từ những em 5, 6 tuổi cho tới những học sinh, sinh viên, các dấng tung niên hay những cô chú lớn tuổi…. Đặc biệt TRUNG TÂM PHANXCO rất vui mừng khi mỗi năm TRUNG TÂM đã đào tạo khoảng 15 học viên thi đậu vào các trường âm nhac TP, cùng với những giải thưởng cấp Phường, Quận các các em học sinh. Đó là niềm hạnh phúc và là thành quả...</p>
-                        <a class="readmore" href="#">READ MORE
+                        
+                            <?php
+                                $pages = get_posts(
+                                    array(
+                                        'name'      => 'gioi-thieu',
+                                        'post_type' => 'page'
+                                    )
+                                );
+                                $existAbout = false;
+                                if (count($pages)) {
+                                    $aboutPage = $pages[0];
+                                    if (!empty($aboutPage->post_content)) {
+                                        echo '<span class="about-summary clearfix">';
+                                        // echo $aboutPage->post_content;
+                                        $aboutContent = wp_trim_words($aboutPage->post_content, 100, '...');
+                                        // $aboutContent = preg_replace('/<img[^>]+./', '', $aboutPage->post_content);
+                                        // $aboutContent = strip_tags(strip_shortcodes($aboutPage->post_content));
+                                        echo $aboutContent;
+                                        echo '</span>';
+                                        echo '<a class="readmore" href="' . get_permalink($aboutPage->ID) . '">READ MORE</a>';
+                                        $existAbout = true;
+                                    }
+                                }
+                                if (!$existAbout) { ?>
+                                    <p>Lời ngỏ!</p>
+                                    <p>TRUNG TÂM ÂM NHẠC PHANXICO được thành lập từ tháng 3 / 2009. Với mục đích đưa âm nhạc đến gần hơn với mọi người, là nơi giải trí, thư giản gặp gỡ và dao lưu sau một ngày làm việc mệt nhọc. Cho tới nay Trung Tâm rất vinh dữ đã đào tạo được gần 2 ngàn học viên từ những em 5, 6 tuổi cho tới những học sinh, sinh viên, các dấng tung niên hay những cô chú lớn tuổi…. Đặc biệt TRUNG TÂM PHANXCO rất vui mừng khi mỗi năm TRUNG TÂM đã đào tạo khoảng 15 học viên thi đậu vào các trường âm nhac TP, cùng với những giải thưởng cấp Phường, Quận các các em học sinh. Đó là niềm hạnh phúc và là thành quả...</p>
+                                <?php }
+                            ?>
+                        
+                        <!-- <a class="readmore" href="#">READ MORE</a> -->
                             <!-- <img src="wp-content/themes/spacious/img/readmore.png" /> -->
-                        </a>
                     </div>
                     <div class="about-first-video">
-                        <div class="about-video-thumb">
+                        <!-- <div class="about-video-thumb"> -->
                             <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        <!-- </div> -->
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="about-second">
-                    <div class="tg-one-third small-margin">
+                    <div class="tg-one-third small-margin about-second-video">
                         <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <div class="tg-one-third">
+                    <div class="tg-one-third about-second-video">
                         <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <div class="tg-one-third">
+                    <div class="tg-one-third about-second-video">
                         <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </section>
         <section id="chuong-trinh-hoc" class="section default">
@@ -88,18 +113,76 @@
                 </div>
                 <div class="course">
                     <div class="course-wrapper">
-                        <a class="course-item">
+                    <?php
+                        $args       = array('posts_per_page' => 4, 'orderby' => 'rand', 'category' => 3);
+                        $courses    = get_posts($args);
+                        $time       = 0;
+                        $courseAttr = array(
+                                array('right', 'orange', 'left'),
+                                array('left', 'grey', 'right'),
+                        );
+                        $iAttr            = rand(0, 1);
+                        $smallCourseItems = '';
+                        foreach ($courses as $key => $course) {
+                            $time++;
+                            if ($time%2) {
+                                $currAttr = $courseAttr[$iAttr];
+                                $iAttr    = !$iAttr;
+                            }
+                            $coursePermalink = get_permalink($course->ID);
+                            ?>
+                            <a class="course-item" href="<?= $coursePermalink ?>">
+                                <div class="course-item-content course-item-img course-item-<?= $currAttr[0] ?>">
+                                    <?php
+                                    if (has_post_thumbnail($course->ID)) {
+                                        $courseImage = get_the_post_thumbnail($course->ID, 'full');
+                                        echo $courseImage;
+                                    } else {
+                                        echo '<img src="/wp-content/themes/spacious/img/course-img-1.png" />';
+                                    }
+                                    // <img src="/wp-content/themes/spacious/img/course-img-1.png" />
+                                    ?>
+                                </div>
+                                <div class="course-item-arrow course-item-arrow-<?= $currAttr[1] ?>"></div>
+                                <div class="course-item-content course-item-txt course-item-<?= $currAttr[2] ?>">
+                                    <div class="course-item-text">
+                                        <?= $course->post_title; ?>
+                                    </div>
+                                </div>
+                            </a>
+
+                        <?php
+                            $smallItemColor    = $time%2 ? 'orange' : 'grey';
+                            $smallCourseItems .= "<a class=\"course-item-small bg-{$smallItemColor}\" href=\"{$coursePermalink}\">"
+                                              . $courseImage
+                                              . "<span>{$course->post_title}</span>"
+                                              . '</a>';
+
+                        }
+                    ?>
+                        <!-- <a class="course-item" href="#">
                             <div class="course-item-content course-item-img course-item-right">
                                 <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
                             <div class="course-item-arrow course-item-arrow-orange"></div>
                             <div class="course-item-content course-item-txt course-item-left">
                                 <div class="course-item-text">
-                                    THANH NHẠC
+                                    KHÓA THANH NHẠC CƠ BẢN
                                 </div>
                             </div>
-                        </a>
-                        <a class="course-item">
+                        </a> -->
+                        <!-- <a class="course-item" href="#">
+                            <div class="course-item-content course-item-img course-item-left">
+                                <img src="/wp-content/themes/spacious/img/course-img-1.png" />
+                            </div>
+                            <div class="course-item-arrow course-item-arrow-grey"></div>
+                            <div class="course-item-content course-item-txt course-item-right">
+                                <div class="course-item-text">
+                                    GUITAR
+                                </div>
+                            </div>
+                        </a> -->
+                        <!-- <a class="course-item">
                             <div class="course-item-content course-item-img course-item-left">
                                 <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
@@ -111,17 +194,6 @@
                             </div>
                         </a>
                         <a class="course-item">
-                            <div class="course-item-content course-item-img course-item-left">
-                                <img src="/wp-content/themes/spacious/img/course-img-1.png" />
-                            </div>
-                            <div class="course-item-arrow course-item-arrow-grey"></div>
-                            <div class="course-item-content course-item-txt course-item-right">
-                                <div class="course-item-text">
-                                    GUITAR
-                                </div>
-                            </div>
-                        </a>
-                        <a class="course-item">
                             <div class="course-item-content course-item-img course-item-right">
                                 <img src="/wp-content/themes/spacious/img/course-img-1.png" />
                             </div>
@@ -131,8 +203,11 @@
                                     THANH NHẠC
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                         <div class="clearfix"></div>
+                    </div>
+                    <div class="course-wrapper-small">
+                        <?=$smallCourseItems?>
                     </div>
                 </div>
             </div>
@@ -147,16 +222,39 @@
                     <a href="#" class="category-kt-item">KIẾN THỨC BỔ ÍCH</a>
                     <div class="clearfix"></div>
                 </div>
+                <?php
+                    $args = array('numberposts' => '5', 'category' => 4, 'post_type' => 'post');
+                    $recentPosts = wp_get_recent_posts($args, OBJECT);
+                    $latestPost  = $recentPosts[0];
+                    unset($recentPosts[0]);
+                    $latestPostLink = get_permalink($latestPost->ID);
+                ?>
                 <div class="latest-news">
+                    <a href="<?=$latestPostLink?>" class="latest-post-title"><h2>Lịch sử đàn guitar</h2></a>
                     <div class="post-image">
-                        <a href="#lich-su-dan-quitar">
-                            <img src="/wp-content/themes/spacious/img/course-img-2.png">
+                        <a href="<?=$latestPostLink?>">
+                            <?php
+                                if (has_post_thumbnail($latestPost->ID)) {
+                                    echo get_the_post_thumbnail($latestPost->ID, 'full');
+                                } else {
+                                    echo '<img src="/wp-content/themes/spacious/img/course-img-2.png">';
+                                }
+                            ?>
                         </a>
                     </div>
                     <div class="post-summary">
-                        <a href="#lich-su-dan-quitar"><h2>Lịch sử đàn guitar</h2></a>
-                        <p>Đàn ghi-ta (tiếng Pháp: guitare; tiếng Anh: guitar), còn được biết đến dưới cái tên Tây Ban cầm (西班琴), vốn xuất xứ là một nhạc cụ có cách đây hơn 5000 năm (loại ghi-ta cổ), sau này người Tây Ban Nha mới cải tiến nó thành đàn ghi-ta ngày nay. Đàn ghi-ta ngày nay có 6 dây, tuy nhiên vẫn tồn tại những loại đàn ghi-ta có 4, 7, 8, 10 và 12 dây.</p>
-                        <a href="#lich-su-dan-quitar" class="readmore">READ MORE</a>
+                        <p>
+                        <?php
+                            $latestContent = wp_trim_words($latestPost->post_content, 40, '...'); 
+                            if (!empty($latestContent)) {
+                                echo $latestContent;
+                            } else {
+                                echo 'Nội dung đang được cập nhật...';
+                            }
+                        ?>
+                        </p>
+                        <!-- <p>Đàn ghi-ta (tiếng Pháp: guitare; tiếng Anh: guitar), còn được biết đến dưới cái tên Tây Ban cầm (西班琴), vốn xuất xứ là một nhạc cụ có cách đây hơn 5000 năm (loại ghi-ta cổ), sau này người Tây Ban Nha mới cải tiến nó thành đàn ghi-ta ngày nay. Đàn ghi-ta ngày nay có 6 dây, tuy nhiên vẫn tồn tại những loại đàn ghi-ta có 4, 7, 8, 10 và 12 dây.</p> -->
+                        <a href="<?=$latestPostLink?>" class="readmore">READ MORE</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -164,29 +262,75 @@
                     <div class="previous-post load-more-post-icon">
                         <a></a>
                     </div>
-                    <div class="post-content ">
-                        <div class="post-item ">
-                            <a href="#">
-                                <img src="/wp-content/themes/spacious/img/course-img-2.png">
-                            </a>
-                        </div>
-                        <div class="post-item ">
-                            <a href="#">
-                                <img src="/wp-content/themes/spacious/img/course-img-2.png">
-                            </a>
-                        </div>
-                        <div class="post-item tg-one-thirds">
-                            <a href="#">
-                                <img src="/wp-content/themes/spacious/img/course-img-2.png">
-                            </a>
+                    <div class="post-content">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <?php
+                                foreach ($recentPosts as $post) {
+                                    $postLink = get_permalink($post->ID);
+                                    echo '<div class="swiper-slide post-item-swiper">';
+                                    echo '<a href="' . $postLink . '">';
+                                    if (has_post_thumbnail($post->ID)) {
+                                        echo get_the_post_thumbnail($post->ID, 'full');
+                                    } else {
+                                        echo '<img src="http://placehold.it/300/f44336/000000" alt="' . $post->post_title . '" />';
+                                    }
+                                    echo '</a>';
+                                    echo '</div>';
+                                }
+                                ?>
+                                <div class="swiper-slide post-item-swiper">
+                                    <a href="#">
+                                        <img src="http://placehold.it/300/e91e63/000000">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide post-item-swiper">
+                                    <a href="#">
+                                        <img src="http://placehold.it/300/9c27b0/000000">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide post-item-swiper">
+                                    <a href="#">
+                                        <img src="http://placehold.it/300/673ab7/000000">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide post-item-swiper">
+                                    <a href="#">
+                                        <img src="http://placehold.it/300/e91e63/000000">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide post-item-swiper">
+                                    <a href="#">
+                                        <img src="http://placehold.it/300/9c27b0/000000">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide post-item-swiper">
+                                    <a href="#">
+                                        <img src="http://placehold.it/300/673ab7/000000">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="next-post load-more-post-icon">
                         <a></a>
                     </div>
                     <div class="clearfix"></div>
+
                 </div>
             </div>
+
+            <!-- Initialize Swiper -->
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    slidesPerView: 3,
+                    paginationClickable: true,
+                    spaceBetween: 5,
+                    nextButton: '.next-post',
+                    prevButton: '.previous-post',
+                });
+            </script>
         </section>
         <!-- <section id="gallery" class="section default">
             <div class="inner-wrap">

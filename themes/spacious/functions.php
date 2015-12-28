@@ -137,4 +137,14 @@ function spacious_theme_options() {
       esc_url('http://themegrill.com/contact/')
    );
 }
+
+/**
+ * Proper way to enqueue scripts and styles
+ */
+function spacious_swipper_script() {
+	wp_enqueue_style( 'style-swipper', get_template_directory_uri() . '/css/swiper.min.css' );
+	wp_enqueue_script( 'script-swipper', get_template_directory_uri() . '/js/swiper.min.js' );
+}
+
+add_action( 'wp_enqueue_scripts', 'spacious_swipper_script' );
 ?>

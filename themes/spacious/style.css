@@ -496,6 +496,7 @@ body {
     top: 0;
     left: 0;
     z-index: 999;*/
+    background-color: #f4f3f3;
     -webkit-transition: height 0.3s;
     -moz-transition: height 0.3s;
     -ms-transition: height 0.3s;
@@ -940,14 +941,18 @@ li.default-menu {
 /* =PAGE HEADER TITLE
 ----------------------------------------------- */
 .header-post-title-container {
-    border-bottom: 1px solid #EAEAEA;
-    padding: 20px 0;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05) inset;
+    /*border-bottom: 1px solid #EAEAEA;*/
+    padding: 40px 0 20px 0;
+    /*box-shadow: 0 0 30px rgba(0, 0, 0, 0.05) inset;*/
 }
 .header-post-title-container .post-title-wrapper {
-    float: left;
+    /*float: left;*/
     max-width: 100%;
-    padding-right: 30px;
+    /*padding-right: 30px;*/
+    text-align: center;
+    background: #fff url("img/header-line.png") no-repeat center bottom;
+    background-size: 300px;
+    padding-bottom: 30px;
 }
 .header-post-title-class {
     font-size: 22px;
@@ -983,8 +988,8 @@ li.default-menu {
 }
 #main {
     /*padding: 40px 0 10px 0;*/
-    padding: 40px 0 0 0;
-    min-height: 1200px;
+    /*padding: 40px 0 0 0;*/
+    /*min-height: 1200px;*/
 }
 .widget_service_block {
     margin-bottom: 30px;
@@ -1664,6 +1669,7 @@ li.default-menu {
     /*float: left;*/
     font-size: 16px;
     text-align: center;
+    line-height: 30px;
 }
 .footer-socket-wrapper .copyright a {
     color: #666666;
@@ -1948,7 +1954,7 @@ a#scroll-up:hover {
     }
     .tg-one-half, .tg-one-third, .tg-one-fourth {
         float: left;
-        width: 46.7684729%;
+        /*width: 46.7684729%;*/
     }
    .widget_service_block .tg-one-third {
       float: left;
@@ -2072,7 +2078,7 @@ a#scroll-up:hover {
    .gallery-columns-9 .gallery-item {
     width:25%;
    }
-   /*==contact form==*/
+   /*== contact form ==*/
    .contact-form {
         width: 400px !important;
         margin: 0 auto !important
@@ -2089,6 +2095,16 @@ a#scroll-up:hover {
         width: 100% !important;
 
     }
+    /*== latest post ==*/
+   /*.latest-news .post-image {
+        width: 100% !important;
+        float: none !important;
+   }
+   .post-summary {
+        width: 100% !important;
+        float: none !important;
+        padding: 10px !important;
+   }*/
 }
 @media only screen and (max-width: 420px) {
    #page {
@@ -2114,6 +2130,13 @@ a#scroll-up:hover {
    .wpcf7 input[type="text"], .wpcf7 textarea.wpcf7-textarea {
         width:250px;
    }
+    /*== latest post ==*/
+    .latest-news .post-image, .post-summary {
+        width: 100% !important;
+    }
+    .post-summary {
+        width: 100%;
+    }
 }
 
 /* Remove the updated class from entry meta */
@@ -2130,7 +2153,7 @@ a#scroll-up:hover {
     background-repeat: no-repeat;
     /*height: 80px;*/
     margin: 20px 0;
-    padding: 0 0 40px;
+    padding: 0 0 20px;
 }
 /*== SECTIONS ==*/
 .section.default {
@@ -2146,6 +2169,7 @@ a#scroll-up:hover {
     margin-top: 0px;
     margin-bottom: 0px;
 }
+/*== ABOUT ==*/
 .about-first-text {
     float: left;
     width: 60.4581282%;
@@ -2166,13 +2190,33 @@ a#scroll-up:hover {
 .readmore img {
     width: 40px;
 }
+.about-first {
+    margin: 20px 0;
+}
 .about-second {
-    margin: 0 4.46305419%;
+    margin: 20px 4.46305419%;
+}
+.about-second-video iframe {
+    width: 100% !important;
 }
 section#gioi-thieu {
     background-color: #f4f3f3;
     background-size: cover;
 }
+@media screen and (max-width: 600px) {
+    /*== about ==*/
+   .about-first-text {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px 10px;
+        float: none;
+        box-sizing: border-box;
+   }
+   .about-first-video {
+        display: none;
+   }
+}
+
 section#lien-he {
     background: url("img/contact-bg.png");
     /*background-position: bottom;*/
@@ -2180,6 +2224,13 @@ section#lien-he {
     background-repeat: no-repeat;
     background-size: cover;
     /**/
+}
+section#lien-he .section-header {
+    padding: 0 0 20px;
+    background: url("img/header-line-white.png");
+    background-position: bottom;
+    background-size: 366px;
+    background-repeat: no-repeat;
 }
 .same-logo-color {
     color: #EE5A35;
@@ -2278,8 +2329,6 @@ section#lien-he {
 }
 
 a.social-link {
-    background-position: left;
-    background-repeat: no-repeat;
     padding: 7px 16px;
     margin: 2px
 }
@@ -2288,9 +2337,13 @@ a.social-link:hover {
 }
 a.fticon-fblink {
     background: url("img/fb-icon.png");
+    background-position: left;
+    background-repeat: no-repeat;
 }
 a.fticon-twlink {
     background: url("img/tw-icon.png");
+    background-position: left;
+    background-repeat: no-repeat;
 }
 /*== TIN TUC & SU KIEN ==*/
 .sheet-nhac {
@@ -2387,6 +2440,11 @@ a.category-kt-item:hover {
     width: 100%;
     margin: 0;
 }
+.latest-post-title {
+    display: inline-block;
+    /*float: left;*/
+    padding: 0 0 0 40px;
+}
 .post-summary {
     width: 65%;
     float: right;
@@ -2452,6 +2510,7 @@ a.category-kt-item:hover {
 .post-content {
     display: inline-block;
     width: 84%;
+    overflow: hidden;
 }
 .post-content .post-item {
     height: 194px;
@@ -2470,6 +2529,9 @@ a.category-kt-item:hover {
     height: 194px;
 }
 /*== COURSE ==*/
+.course-wrapper-small {
+    display: none;
+}
 .course-wrapper {
     /*height: 640px;*/
     /*margin: 0 0 20px;*/
@@ -2512,20 +2574,43 @@ a.category-kt-item:hover {
 }
 .course-item-txt {
     background: #ee5a35;
+    /*line-height: 300px;*/
+    text-align: center;
+    font-size: 22px;
+    box-sizing: border-box;
+    padding-top: 13%;
+}
+.course-item-text {
+    /*height: 55px;*/
+    /*margin-top: 40%;*/
+    padding: 36px 10px;
+    line-height: 140%;
+    text-transform: uppercase;
+}
+.course-item-left .course-item-text {
+    background: url("img/course-text-line.png") no-repeat 50% bottom;
+    background-size: 170px;
+
+}
+.course-item-right .course-item-text {
+    background: url("img/course-text-line-bk.png") no-repeat 50% bottom;
+    background-size: 170px;
 }
 .course-item-right {
     top: 0;
     left: 50%;
     background: #f4f3f3;
+    color: #ee5a35;
 }
 .course-item-left {
     top: 0;
     left: 0;
     background: #ee5a35;
+    color: #fff;
 }
 .course-item-arrow {
     position: absolute;
-    top: 50%;
+    top: 132px;
     height: 36px;
     width: 18px;
     z-index: 1000;
@@ -2538,3 +2623,66 @@ a.category-kt-item:hover {
     background: url("img/arrow-item-grey.png") no-repeat 0 0;
     left: 284px;
 }
+.about-summary {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+@media screen and (max-width: 660px) {
+    .course-wrapper {
+        display: none;
+    }
+    .course-wrapper-small {
+        display: block;
+    }
+    .course-item-small {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        background-color: #ee5a35;
+        color: #fff;
+        margin: 2px 0;
+        box-sizing: border-box;
+    }
+    .course-item-small.bg-grey {
+        color: #000;
+    }
+    .course-item-small.bg-orange {
+        color: #fff;
+    }
+    .course-item-small img {
+        width: 100%;
+    }
+}
+.bg-orange {
+    background-color: #ee5a35;
+}
+.bg-grey {
+    background-color: #f4f3f3;
+}
+/*== more post SWIPER ==*/
+.swiper-container {
+    width: 940px;
+    height: 196px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /*background: #fff;*/
+    
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.post-item-swiper img {
+        width: 100%;
+    }
