@@ -96,17 +96,17 @@
                     <div class="video-wrapper">
                         <!-- <div class="tg-one-third small-margin about-second-video"> -->
                         <div class="about-second-video">
-                            <a href="https://www.youtube.com/embed/4LZGip1L1js" class="video-link">
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js?autoplay=1" class="video-link various fancybox.iframe">
                             </a>
                             <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="about-second-video">
-                            <a href="https://www.youtube.com/embed/4LZGip1L1js" class="video-link">
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js?autoplay=1" class="video-link various fancybox.iframe">
                             </a>
                             <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="about-second-video">
-                            <a href="https://www.youtube.com/embed/4LZGip1L1js" class="video-link">
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js?autoplay=1" class="video-link various fancybox.iframe">
                             </a>
                             <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                         </div>
@@ -123,7 +123,7 @@
                 <div class="course">
                     <div class="course-wrapper">
                     <?php
-                        $args       = array('posts_per_page' => 4, 'orderby' => 'rand', 'category' => 3);
+                        $args       = array('posts_per_page' => 6, 'orderby' => 'rand', 'category' => 3);
                         $courses    = get_posts($args);
                         $time       = 0;
                         $courseAttr = array(
@@ -373,5 +373,12 @@
         </section>
         <div class="clearfix"></div>
     </div>
-
+    <style type="text/css">
+    .menu-item-home a {
+        color: #fff !important;
+    }
+    .menu-item-home a:hover, .menu-item-home:first-child a {
+        color: #ee5a35 !important;
+    }
+    </style>
 <?php get_footer(); ?>

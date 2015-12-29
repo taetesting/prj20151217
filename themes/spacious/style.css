@@ -511,7 +511,7 @@ body {
     /*border-bottom: 1px solid #EAEAEA;*/
     background-color: #000;
     position: fixed;
-    z-index: 1000;
+    z-index: 7777;
     width: 100%;
     opacity: 0.8;
     /*height: 115px;*/
@@ -2120,6 +2120,20 @@ a#scroll-up:hover {
         float: none !important;
         padding: 10px !important;
    }*/
+   a.category-news-item, a.category-kt-item {
+        float: none !important;
+        display: inline-block;
+        margin: 5px auto !important;
+        width: 100%;
+        box-sizing: border-box;
+   }
+   a.category-kt-item {
+        background-position: 30px 7px !important;
+        padding: 10px 22px 10px 72px !important;
+   }
+   a.category-kt-item:hover {
+        background: url("img/kien-thuc-org.png") no-repeat 30px 7px;
+   }
 }
 @media only screen and (max-width: 420px) {
    #page {
@@ -2741,7 +2755,7 @@ a.course-item:hover .course-item-text {
 .header-swiper-container {
     width: 100%;
     /*height: 100%;*/
-    max-height: 550px;
+    max-height: 660px;
     position: relative;
 }
 .header-swiper-slide {
@@ -2774,4 +2788,19 @@ a.course-item:hover .course-item-text {
 }
 .header-swiper-pagination .swiper-pagination-bullet-active {
     background: #ee5a35;
+}
+.swiper-pagination-bullet {
+    margin: 0 10px;
+}
+/*== VIDEO POPUP SETTING ==*/
+.fancybox-lock .fancybox-overlay {
+    overflow: hidden !important;
+}
+.fancybox-wrap .fancybox-skin {
+    /*width: 100% !important;*/
+    background: #232323;
+}
+.fancybox-wrap iframe {
+    width: 720px;
+    margin: 0 auto !important;
 }

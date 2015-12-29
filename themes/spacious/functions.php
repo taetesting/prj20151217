@@ -147,4 +147,14 @@ function spacious_swipper_script() {
 }
 
 add_action( 'wp_enqueue_scripts', 'spacious_swipper_script' );
+
+function spacious_fancybox_script() {
+	//source/jquery.fancybox.js?v=2.1.5
+	//source/jquery.fancybox-buttons.css
+	wp_enqueue_script( 'script-fancybox-js', get_template_directory_uri() . '/js/jquery.fancybox.js' );
+	wp_enqueue_style( 'style-fancybox-css', get_template_directory_uri() . '/css/jquery.fancybox.css' );
+
+}
+add_action( 'wp_enqueue_scripts', 'spacious_fancybox_script' );
+
 ?>
