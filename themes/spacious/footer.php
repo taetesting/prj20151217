@@ -70,6 +70,15 @@
                     }
                 }
             });
+            jQuery('.about-second-video .video-link').click(function() {
+                alert('SHIT!!!');
+            });
+        });
+
+        var swiper = new Swiper('.header-swiper-container', {
+            speed: 400,
+            pagination: '.header-swiper-pagination',
+            paginationClickable: true
         });
     </script>
     <!-- <button id="btnBottom">Click</button> -->

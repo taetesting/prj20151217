@@ -87,22 +87,31 @@
                     </div>
                     <div class="about-first-video">
                         <!-- <div class="about-video-thumb"> -->
-                            <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="444" height="250" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                         <!-- </div> -->
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="about-second">
-                    <div class="tg-one-third small-margin about-second-video">
-                        <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <!-- <div class="tg-one-third small-margin about-second-video"> -->
+                        <div class="about-second-video">
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js" class="video-link">
+                            </a>
+                            <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="about-second-video">
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js" class="video-link">
+                            </a>
+                            <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="about-second-video">
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js" class="video-link">
+                            </a>
+                            <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="tg-one-third about-second-video">
-                        <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="tg-one-third about-second-video">
-                        <iframe width="380" height="214" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="clearfix"></div>
                 </div>
             </div>
         </section>
@@ -118,8 +127,8 @@
                         $courses    = get_posts($args);
                         $time       = 0;
                         $courseAttr = array(
-                                array('right', 'orange', 'left'),
-                                array('left', 'grey', 'right'),
+                                array('right', 'right', 'left'),
+                                array('left', 'left', 'right'),
                         );
                         $iAttr            = rand(0, 1);
                         $smallCourseItems = '';
@@ -230,7 +239,7 @@
                     $latestPostLink = get_permalink($latestPost->ID);
                 ?>
                 <div class="latest-news">
-                    <a href="<?=$latestPostLink?>" class="latest-post-title"><h2>Lịch sử đàn guitar</h2></a>
+                    <a href="<?=$latestPostLink?>" class="latest-post-title"><h2><?= $latestPost->post_title ?></h2></a>
                     <div class="post-image">
                         <a href="<?=$latestPostLink?>">
                             <?php
@@ -245,7 +254,7 @@
                     <div class="post-summary">
                         <p>
                         <?php
-                            $latestContent = wp_trim_words($latestPost->post_content, 40, '...'); 
+                            $latestContent = wp_trim_words($latestPost->post_content, 100, '...'); 
                             if (!empty($latestContent)) {
                                 echo $latestContent;
                             } else {
@@ -273,7 +282,7 @@
                                     if (has_post_thumbnail($post->ID)) {
                                         echo get_the_post_thumbnail($post->ID, 'full');
                                     } else {
-                                        echo '<img src="http://placehold.it/300/f44336/000000" alt="' . $post->post_title . '" />';
+                                        echo '<img src="' . get_template_directory_uri() . '/img/post-demo-01.jpg" alt="' . $post->post_title . '" />';
                                     }
                                     echo '</a>';
                                     echo '</div>';
@@ -281,32 +290,17 @@
                                 ?>
                                 <div class="swiper-slide post-item-swiper">
                                     <a href="#">
-                                        <img src="http://placehold.it/300/e91e63/000000">
+                                        <img src="<?= get_template_directory_uri() ?>/img/post-demo-01.jpg">
                                     </a>
                                 </div>
                                 <div class="swiper-slide post-item-swiper">
                                     <a href="#">
-                                        <img src="http://placehold.it/300/9c27b0/000000">
+                                        <img src="<?= get_template_directory_uri() ?>/img/post-demo-02.jpg">
                                     </a>
                                 </div>
                                 <div class="swiper-slide post-item-swiper">
                                     <a href="#">
-                                        <img src="http://placehold.it/300/673ab7/000000">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide post-item-swiper">
-                                    <a href="#">
-                                        <img src="http://placehold.it/300/e91e63/000000">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide post-item-swiper">
-                                    <a href="#">
-                                        <img src="http://placehold.it/300/9c27b0/000000">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide post-item-swiper">
-                                    <a href="#">
-                                        <img src="http://placehold.it/300/673ab7/000000">
+                                        <img src="<?= get_template_directory_uri() ?>/img/post-demo-03.jpg">
                                     </a>
                                 </div>
                             </div>

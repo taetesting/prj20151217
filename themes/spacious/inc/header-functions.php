@@ -78,12 +78,26 @@ if ( ! function_exists( 'spacious_render_header_image' ) ) :
  * Shows the small info text on top header part
  */
 function spacious_render_header_image() {
-	$header_image = get_header_image();
-	if( !empty( $header_image ) ) {
+	// $header_image = get_header_image();
+	// if( !empty( $header_image ) ) {
+	 // <img src="<php echo esc_url( $header_image ); >" class="header-image" width="<php echo get_custom_header()->width; >" height="<php echo get_custom_header()->height; >" alt="<php echo esc_attr( get_bloginfo( 'name', 'display' ) ); >">
 	?>
-		<img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+	<div class="header-image">
+		<div class="header-swiper-container">
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide header-swiper-slide"><img src="<?= get_template_directory_uri() ?>/img/bgheader-02.jpg" /></div>
+	            <div class="swiper-slide header-swiper-slide"><img src="<?= get_template_directory_uri() ?>/img/bgheader-03.jpg" /></div>
+	            <div class="swiper-slide header-swiper-slide"><img src="<?= get_template_directory_uri() ?>/img/bgheader-04.jpg" /></div>
+	            <div class="swiper-slide header-swiper-slide"><img src="<?= get_template_directory_uri() ?>/img/bgheader-05.jpg" /></div>
+	            <div class="swiper-slide header-swiper-slide"><img src="<?= get_template_directory_uri() ?>/img/bgheader-01.png" /></div>
+	            <div class="swiper-slide header-swiper-slide"><img src="<?= get_template_directory_uri() ?>/img/bgheader-06.jpg" /></div>
+	        </div>
+	        <!-- Add Pagination -->
+	        <div class="header-swiper-pagination"></div>
+	    </div>
+	</div>
 	<?php
-	}
+	// }
 }
 endif;
 
