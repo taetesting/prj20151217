@@ -141,30 +141,45 @@ function spacious_theme_options() {
 /**
  * Proper way to enqueue scripts and styles
  */
+add_action( 'wp_enqueue_scripts', 'spacious_swipper_script' );
 function spacious_swipper_script() {
     wp_enqueue_style( 'style-swipper', get_template_directory_uri() . '/css/swiper.min.css' );
     wp_enqueue_script( 'script-swipper', get_template_directory_uri() . '/js/swiper.min.js' );
 }
 
-add_action( 'wp_enqueue_scripts', 'spacious_swipper_script' );
-
+add_action( 'wp_enqueue_scripts', 'spacious_fancybox_script' );
 function spacious_fancybox_script() {
     //source/jquery.fancybox.js?v=2.1.5
     //source/jquery.fancybox-buttons.css
     wp_enqueue_script( 'script-fancybox-js', get_template_directory_uri() . '/js/jquery.fancybox.js' );
     wp_enqueue_style( 'style-fancybox-css', get_template_directory_uri() . '/css/jquery.fancybox.css' );
-
+    
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if (is_plugin_active( 'gallery-categories/gallery-categories.php' )) {
+        wp_dequeue_style('gllr_fancybox_stylesheet');
+        wp_dequeue_script('gllr_fancybox_mousewheel_js');
+        wp_dequeue_script('gllr_fancybox_js');
+    }
+    
 }
-add_action( 'wp_enqueue_scripts', 'spacious_fancybox_script' );
+
 
 add_action('admin_head', 'my_custom_fonts');
-
 function my_custom_fonts() {
     echo    '<style>
                 .post-type-gallery table.media .column-dimensions {
                     width: 10% !important;
                 }
             </style>';
+}
+
+//Disable JS of GALLERY
+add_action('wp_footer', 'remove_scripts_styles_footer');
+function remove_scripts_styles_footer() {
+    //----- CSS
+    wp_deregister_style('jetpack_css'); // Jetpack
+    //----- JS
+    wp_deregister_script('devicepx'); // Jetpack
 }
 
 // == SHORTCODE FOR GALLERY
@@ -343,11 +358,11 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
                                     ?>
                                             <div class="swiper-slide">
                                                     <?php if ( ( $url_for_link = get_post_meta( $attachment->ID, $link_key, true ) ) != "" ) { ?>
-                                                        <a href="<?php echo $url_for_link; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" target="_blank">
+                                                        <a class="fancybox-photo-item" href="<?php echo $url_for_link; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" target="_blank">
                                                             <img class="gallery-photo-item"> width="<?php echo $gllr_options['gllr_custom_size_px'][1][0]; ?>" height="<?php echo $gllr_options['gllr_custom_size_px'][1][1]; ?>"  alt="<?php echo get_post_meta( $attachment->ID, $alt_tag_key, true ); ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" src="<?php echo $image_attributes[0]; ?>" />
                                                         </a>
                                                     <?php } else { ?>
-                                                        <a rel="gallery_fancybox<?php if ( 0 == $gllr_options['single_lightbox_for_multiple_galleries'] ) echo '_' . $post->ID; ?>" href="<?php echo $image_attributes_large[0]; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>">
+                                                        <a class="fancybox-photo-item" rel="gallery_fancybox<?php if ( 0 == $gllr_options['single_lightbox_for_multiple_galleries'] ) echo '_' . $post->ID; ?>" href="<?php echo $image_attributes_large[0]; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>">
                                                             <img class="gallery-photo-item" alt="<?php echo get_post_meta( $attachment->ID, $alt_tag_key, true ); ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" src="<?php echo $image_attributes[0]; ?>" rel="<?php echo $image_attributes_full[0]; ?>" />
                                                         </a>
                                                     <?php } ?>
@@ -379,11 +394,23 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
                         <div class="return_link"><a href="<?php echo $gllr_options["return_link_url"]; ?>"><?php echo $gllr_options['return_link_text']; ?></a></div>
                     <?php }
                 } ?>
+                
             <?php }
             wp_reset_query();
         }
         $gllr_output = ob_get_clean();
         return $gllr_output;
     }
+}
+
+// add_filter( 'wp_nav_menu_items', 'add_loginout_link', 10, 2 );
+function add_loginout_link( $items, $args ) {
+    // if (is_user_logged_in() && $args->theme_location == 'primary') {
+    //     $items .= '<li><a href="'. wp_logout_url() .'">Log Out</a></li>';
+    // } elseif (!is_user_logged_in() && $args->theme_location == 'primary') {
+    //     $items .= '<li><a href="'. site_url('wp-login.php') .'">Log In</a></li>';
+    // }
+    // $items .= '<li><a href="#">< </a></li>';
+    return $items;
 }
 ?>

@@ -70,23 +70,6 @@
                     }
                 }
             });
-            jQuery(".various").fancybox({
-                    // maxWidth    : 800,
-                    maxHeight   : 400,
-                    fitToView   : false,
-                    width       : '100%',
-                    // height      : '70%',
-                    autoSize    : true,
-                    closeClick  : true,
-                    openEffect  : 'none',
-                    closeEffect : 'none',
-                    margin      : 0,
-                    padding     : 0,
-                    leftRatio   : 0,
-                    scrolling   : 'hidden'
-                });
-                // jQuery('.about-second-video .video-link').click(function() {
-            //     alert('SHIT!!!');
             // });
         });
 

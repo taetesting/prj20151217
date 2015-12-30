@@ -87,6 +87,7 @@
                     </div>
                     <div class="about-first-video">
                         <!-- <div class="about-video-thumb"> -->
+                            <a href="https://www.youtube.com/embed/4LZGip1L1js?autoplay=1" class="various fancybox.iframe"></a>
                             <iframe width="444" height="250" src="https://www.youtube.com/embed/4LZGip1L1js" frameborder="0" allowfullscreen></iframe>
                         <!-- </div> -->
                     </div>
@@ -310,7 +311,7 @@
                         <a></a>
                     </div>
                     <div class="clearfix"></div>
-
+                    
                 </div>
             </div>
 
@@ -319,11 +320,12 @@
                 var swiper = new Swiper('.swiper-container', {
                     pagination: '.swiper-pagination',
                     slidesPerView: 3,
-                    paginationClickable: true,
+                    // paginationClickable: true,
                     spaceBetween: 5,
                     nextButton: '.next-post',
                     prevButton: '.previous-post',
                 });
+                
             </script>
         </section>
         <!-- <section id="gallery" class="section default">
