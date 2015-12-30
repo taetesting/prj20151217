@@ -2786,8 +2786,8 @@ a.course-item:hover .course-item-text {
     left: 50%;
     z-index: 1000;
 }
-.header-swiper-pagination .swiper-pagination-bullet-active {
-    background: #ee5a35;
+.swiper-pagination-bullet-active {
+    background: #ee5a35 !important;
 }
 .swiper-pagination-bullet {
     margin: 0 10px;
@@ -2803,4 +2803,46 @@ a.course-item:hover .course-item-text {
 .fancybox-wrap iframe {
     width: 720px;
     margin: 0 auto !important;
+}
+/*== GALLERY PAGE ==*/
+.gallery-category {
+    text-align: right;
+    padding: 30px 0;
+}
+.gallery-cate-item-wrapper {
+    padding: 5px 40px;
+    /*width: 300px;*/
+    border: 1px solid #504f4f;
+    display: inline-block;
+    color: #504f4f;
+    text-align: center;
+}
+.gallery-cate-item {
+    box-sizing: border-box;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 42px;
+    display: inline-block;
+}
+.gallery-photo {
+    background: url("img/gallery-photo.png") no-repeat;
+    background-position: 0 0;
+}
+.gallery-video {
+    background: url("img/gallery-video.png") no-repeat 0 0;
+    background-position: 0 0;
+}
+a.gallery-cate-item-wrapper:hover {
+    border-color: #ee5a35;
+}
+a.gallery-cate-item-wrapper:hover .gallery-cate-item {
+    background-position: 0 -30px;
+    color: #ee5a35;
+}
+.gallery-content {
+    min-height: 600px;
+}
+.gallery-photo-item {
+    max-width: 150%;
+    width: 120%;
 }
