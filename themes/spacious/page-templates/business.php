@@ -67,7 +67,7 @@
                                     if (!empty($aboutPage->post_content)) {
                                         echo '<span class="about-summary clearfix">';
                                         // echo $aboutPage->post_content;
-                                        $aboutContent = wp_trim_words($aboutPage->post_content, 100, '...');
+                                        $aboutContent = wp_trim_words($aboutPage->post_content, 200, '...');
                                         // $aboutContent = preg_replace('/<img[^>]+./', '', $aboutPage->post_content);
                                         // $aboutContent = strip_tags(strip_shortcodes($aboutPage->post_content));
                                         echo $aboutContent;
@@ -93,6 +93,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
+                <?php if (true == false) { ?>
                 <div class="about-second">
                     <div class="video-wrapper">
                         <!-- <div class="tg-one-third small-margin about-second-video"> -->
@@ -114,6 +115,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </section>
         <section id="chuong-trinh-hoc" class="section default">
@@ -235,6 +237,27 @@
                 <?php
                     $args = array('numberposts' => '5', 'category' => 4, 'post_type' => 'post');
                     $recentPosts = wp_get_recent_posts($args, OBJECT);
+
+                    $args_RecentPosts = array(
+                                            'post_type' => 'post',
+                                            'tax_query' => array(
+                                                'relation' => 'AND',
+                                                array(
+                                                    'taxonomy' => 'category',
+                                                    'field'    => 'slug',
+                                                    'terms'    => array( 'tin-tuc', 'su-kien'),
+                                                    'operator' => 'IN',
+                                                ),
+                                                array(
+                                                    'taxonomy' => 'category',
+                                                    'field'    => 'slug',
+                                                    'terms'    => array( 'video', 'photo' ),
+                                                    'operator' => 'NOT IN',
+                                                ),
+                                            ),
+                                        );
+                    $query_RecentPosts = new WP_Query( $args_RecentPosts );
+
                     $latestPost  = $recentPosts[0];
                     unset($recentPosts[0]);
                     $latestPostLink = get_permalink($latestPost->ID);
@@ -288,7 +311,8 @@
                                     echo '</a>';
                                     echo '</div>';
                                 }
-                                ?>
+                                if (count($recentPosts) < 5) { ?>
+
                                 <div class="swiper-slide post-item-swiper">
                                     <a href="#">
                                         <img src="<?= get_template_directory_uri() ?>/img/post-demo-01.jpg">
@@ -304,6 +328,12 @@
                                         <img src="<?= get_template_directory_uri() ?>/img/post-demo-03.jpg">
                                     </a>
                                 </div>
+
+                                <?php
+                                }
+                                ?>
+
+                                
                             </div>
                         </div>
                     </div>
