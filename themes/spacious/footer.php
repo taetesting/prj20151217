@@ -74,9 +74,10 @@
         });
 
         var swiper = new Swiper('.header-swiper-container', {
-            speed: 400,
-            pagination: '.header-swiper-pagination',
-            paginationClickable: true
+            speed                   : 400,
+            pagination              : '.header-swiper-pagination',
+            paginationClickable     : true,
+            autoplay                : 5000
         });
     </script>
     <!-- <button id="btnBottom">Click</button> -->

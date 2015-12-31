@@ -2806,7 +2806,7 @@ a.course-item:hover .course-item-text {
 }
 .fancybox-wrap .fancybox-skin {
     /*width: 100% !important;*/
-    background: #232323;
+    /*background: #232323;*/
 }
 .fancybox-wrap iframe {
     width: 720px;
@@ -2863,7 +2863,7 @@ a.gallery-cate-item-wrapper:hover .gallery-cate-item {
     box-sizing: border-box;
 
 }
-#menu-main-menu .menu-item-type-custom:last-child {
+/*#menu-main-menu .menu-item-type-custom:last-child {
     box-sizing: border-box;
     height: 40px;
 }
@@ -2874,4 +2874,22 @@ a.gallery-cate-item-wrapper:hover .gallery-cate-item {
     width: 172px;
     background: url("img/outsite-link-icon.png") no-repeat 0 4px;
     background-size: auto 32px;
+}*/
+.ref-site-link {
+    height: 80px;
+    width: 172px;
+}
+.ref-site-link a {
+    display: inline-block;
+    /*height: 40px;*/
+    width: 180px;
+    background: url("img/outsite-link-icon.png") no-repeat;
+    background-size: auto 32px;
+    height: 32px;
+    position: absolute;
+    bottom: -5px;
+    padding: 0;
+}
+.shrink .ref-site-link {
+    height: 30px;
 }

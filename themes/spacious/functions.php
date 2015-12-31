@@ -359,7 +359,7 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
                                             <div class="swiper-slide">
                                                     <?php if ( ( $url_for_link = get_post_meta( $attachment->ID, $link_key, true ) ) != "" ) { ?>
                                                         <a class="fancybox-photo-item" href="<?php echo $url_for_link; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" target="_blank">
-                                                            <img class="gallery-photo-item"> width="<?php echo $gllr_options['gllr_custom_size_px'][1][0]; ?>" height="<?php echo $gllr_options['gllr_custom_size_px'][1][1]; ?>"  alt="<?php echo get_post_meta( $attachment->ID, $alt_tag_key, true ); ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" src="<?php echo $image_attributes[0]; ?>" />
+                                                            <img class="gallery-photo-item" width="<?php echo $gllr_options['gllr_custom_size_px'][1][0]; ?>" height="<?php echo $gllr_options['gllr_custom_size_px'][1][1]; ?>"  alt="<?php echo get_post_meta( $attachment->ID, $alt_tag_key, true ); ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" src="<?php echo $image_attributes[0]; ?>" />
                                                         </a>
                                                     <?php } else { ?>
                                                         <a class="fancybox-photo-item" rel="gallery_fancybox<?php if ( 0 == $gllr_options['single_lightbox_for_multiple_galleries'] ) echo '_' . $post->ID; ?>" href="<?php echo $image_attributes_large[0]; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>">
@@ -403,14 +403,49 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
     }
 }
 
-// add_filter( 'wp_nav_menu_items', 'add_loginout_link', 10, 2 );
-function add_loginout_link( $items, $args ) {
+add_filter( 'wp_nav_menu_items', 'add_ref_site_link', 10, 2 );
+function add_ref_site_link( $items, $args ) {
     // if (is_user_logged_in() && $args->theme_location == 'primary') {
     //     $items .= '<li><a href="'. wp_logout_url() .'">Log Out</a></li>';
     // } elseif (!is_user_logged_in() && $args->theme_location == 'primary') {
     //     $items .= '<li><a href="'. site_url('wp-login.php') .'">Log In</a></li>';
     // }
-    // $items .= '<li><a href="#">< </a></li>';
+    $items .= '<li class="ref-site-link menu-item menu-item-type-custom menu-item-object-custom menu-item-17"><a href="#"></a></li>';
     return $items;
+}
+
+add_action( 'wp_enqueue_scripts', 'my_enqueue' );
+function my_enqueue($hook) {
+    wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/js/my-script.js', array('jquery') );
+    // in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
+    wp_localize_script( 'custom-script', 'ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
+}
+
+
+add_action( 'wp_ajax_my_action', 'my_action_callback' );
+function my_action_callback() {
+    global $wpdb; // this is how you get access to the database
+    $galleryCode = $_GET['gallery_code'];
+    if (!empty($galleryCode)) {
+        echo do_shortcode($galleryCode);
+        ?>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                                        pagination: '.swiper-pagination',
+                                        slidesPerView: 4,
+                                        slidesPerColumn: 2,
+                                        paginationClickable: true,
+                                        spaceBetween: 20
+                                    });
+                                    jQuery(".fancybox-photo-item").fancybox({
+                                                openEffect  : 'none',
+                                                closeEffect : 'none'
+                                    });
+        </script>
+        <?php
+    }
+
+    wp_die(); // this is required to terminate immediately and return a proper response
 }
 ?>

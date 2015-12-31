@@ -36,6 +36,30 @@ jQuery(document).ready(function(){
         leftRatio   : 0,
         scrolling   : 'hidden'
     });
+
+    jQuery('a.gallery-cate-photo').click(function(){
+        var data = {
+        'action': 'my_action',
+        'gallery_category': 'video'      // We pass php values differently!
+
+        };
+        jQuery.ajax({
+            url: ajax_object.ajax_url,
+            data : {
+                    'action': 'my_action',
+                    'gallery_category': 'Photo'      // We pass php values differently!
+            },
+            success: function( data ) {
+                // jQuery('').html();
+            }, error: function(errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+        // alert('done');
+    });
+
+    
+    // We can also pass the url value separately from ajaxurl for front end AJAX implementations
+    
     // jQuery('.about-second-video .video-link').click(function() {
-    // alert('SHIT!!!?');
 });
