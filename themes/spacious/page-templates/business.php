@@ -93,7 +93,9 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <?php if (true == false) { ?>
+                <?php 
+                $show = false;
+                if ($show == true) { ?>
                 <div class="about-second">
                     <div class="video-wrapper">
                         <!-- <div class="tg-one-third small-margin about-second-video"> -->
@@ -235,10 +237,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <?php
-                    $args = array('numberposts' => '5', 'category' => 4, 'post_type' => 'post');
-                    $recentPosts = wp_get_recent_posts($args, OBJECT);
-
-                    $args_RecentPosts = array(
+                    $argsLatestPost = array(
                                             'post_type' => 'post',
                                             'tax_query' => array(
                                                 'relation' => 'AND',
@@ -255,42 +254,61 @@
                                                     'operator' => 'NOT IN',
                                                 ),
                                             ),
+                                            'orderby' => 'id',
+                                            'order'   => 'DESC',
+                                            'posts_per_page' => 1,
+                                            'offset' => 0
                                         );
-                    $query_RecentPosts = new WP_Query( $args_RecentPosts );
+                    $queryLatestPost = new WP_Query( $argsLatestPost );
+                    if ($queryLatestPost->have_posts()) { 
 
-                    $latestPost  = $recentPosts[0];
-                    unset($recentPosts[0]);
-                    $latestPostLink = get_permalink($latestPost->ID);
-                ?>
-                <div class="latest-news">
-                    <a href="<?=$latestPostLink?>" class="latest-post-title"><h2><?= $latestPost->post_title ?></h2></a>
-                    <div class="post-image">
-                        <a href="<?=$latestPostLink?>">
+                        while ($queryLatestPost->have_posts()) {
+                            $queryLatestPost->the_post();
+                            $latestPostLink = get_the_permalink();
+                            $latestPostId   = get_the_ID();
+                        ?>
+
+                    <div class="latest-news">
+                        <a href="<?=$latestPostLink?>" class="latest-post-title"><h2><?= get_the_title() ?></h2></a>
+                        <div class="post-image">
+                            <a href="<?=$latestPostLink?>">
+                                <?php
+                                    if (has_post_thumbnail()) {
+                                        echo the_post_thumbnail('full');
+                                    } else {
+                                        echo '<img src="/wp-content/themes/spacious/img/course-img-2.png">';
+                                    }
+                                ?>
+                            </a>
+                        </div>
+                        <div class="post-summary">
+                            <p>
                             <?php
-                                if (has_post_thumbnail($latestPost->ID)) {
-                                    echo get_the_post_thumbnail($latestPost->ID, 'full');
+                                $latestContent = wp_trim_words(get_the_content(), 100, '...'); 
+                                if (!empty($latestContent)) {
+                                    echo $latestContent;
                                 } else {
-                                    echo '<img src="/wp-content/themes/spacious/img/course-img-2.png">';
+                                    echo 'Nội dung đang được cập nhật...';
                                 }
                             ?>
-                        </a>
+                            </p>
+                            <!-- <p>Đàn ghi-ta (tiếng Pháp: guitare; tiếng Anh: guitar), còn được biết đến dưới cái tên Tây Ban cầm (西班琴), vốn xuất xứ là một nhạc cụ có cách đây hơn 5000 năm (loại ghi-ta cổ), sau này người Tây Ban Nha mới cải tiến nó thành đàn ghi-ta ngày nay. Đàn ghi-ta ngày nay có 6 dây, tuy nhiên vẫn tồn tại những loại đàn ghi-ta có 4, 7, 8, 10 và 12 dây.</p> -->
+                            <a href="<?=$latestPostLink?>" class="readmore">READ MORE</a>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="post-summary">
-                        <p>
-                        <?php
-                            $latestContent = wp_trim_words($latestPost->post_content, 100, '...'); 
-                            if (!empty($latestContent)) {
-                                echo $latestContent;
-                            } else {
-                                echo 'Nội dung đang được cập nhật...';
-                            }
-                        ?>
-                        </p>
-                        <!-- <p>Đàn ghi-ta (tiếng Pháp: guitare; tiếng Anh: guitar), còn được biết đến dưới cái tên Tây Ban cầm (西班琴), vốn xuất xứ là một nhạc cụ có cách đây hơn 5000 năm (loại ghi-ta cổ), sau này người Tây Ban Nha mới cải tiến nó thành đàn ghi-ta ngày nay. Đàn ghi-ta ngày nay có 6 dây, tuy nhiên vẫn tồn tại những loại đàn ghi-ta có 4, 7, 8, 10 và 12 dây.</p> -->
-                        <a href="<?=$latestPostLink?>" class="readmore">READ MORE</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+
+                    <?php
+                        }
+                    }
+
+                    $args = array('numberposts' => '10', 'category' => 4, 'post_type' => 'post');
+                    $recentPosts = wp_get_recent_posts($args, OBJECT);
+                    // $latestPost     = $recentPosts[0];
+                    // $latestPostLink = get_permalink($latestPost->ID);
+                    unset($recentPosts[0]);
+                ?>
+                
                 <div class="post-more">
                     <div class="previous-post load-more-post-icon">
                         <a></a>
@@ -299,19 +317,49 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <?php
-                                foreach ($recentPosts as $post) {
-                                    $postLink = get_permalink($post->ID);
-                                    echo '<div class="swiper-slide post-item-swiper">';
-                                    echo '<a href="' . $postLink . '">';
-                                    if (has_post_thumbnail($post->ID)) {
-                                        echo get_the_post_thumbnail($post->ID, 'full');
-                                    } else {
-                                        echo '<img src="' . get_template_directory_uri() . '/img/post-demo-01.jpg" alt="' . $post->post_title . '" />';
+                                $argsRecentPosts = array(
+                                        'post_type' => 'post',
+                                        'tax_query' => array(
+                                            'relation' => 'AND',
+                                            array(
+                                                'taxonomy' => 'category',
+                                                'field'    => 'slug',
+                                                'terms'    => array( 'tin-tuc', 'su-kien'),
+                                                'operator' => 'IN',
+                                            ),
+                                        ),
+                                        'post__not_in'   => array($latestPostId),
+                                        'orderby'        => 'id',
+                                        'order'          => 'DESC',
+                                        'posts_per_page' => 10,
+                                        'offset'         => 0
+                                    );
+                                $queryRecentPosts = new WP_Query( $argsRecentPosts );
+                                if ($queryRecentPosts->have_posts()) {
+                                    $recentPosts = $queryRecentPosts->post_count;
+                                    while ($queryRecentPosts->have_posts()) {
+                                        $queryRecentPosts->the_post();
+
+                                        $postLink = get_the_permalink();
+                                        echo '<div class="swiper-slide post-item-swiper">';
+                                        if (has_category('video')) {
+                                            $postLink = get_the_content();
+                                            echo "<a href=\"{$postLink}\" class=\"fancybox-media video-item-wrapper\"></a>";
+                                        } else {
+                                            echo "<a href=\"{$postLink}\"></a>";
+                                        }
+
+                                        if (has_post_thumbnail()) {
+                                            echo the_post_thumbnail('full');
+                                        } else {
+                                            echo '<img src="' . get_template_directory_uri() . '/img/post-demo-01.jpg" alt="' . $post->post_title . '" />';
+                                        }
+                                        // echo '</a>';
+                                        echo '</div>';
                                     }
-                                    echo '</a>';
-                                    echo '</div>';
                                 }
-                                if (count($recentPosts) < 5) { ?>
+
+                                if (isset($recentPosts) && count($recentPosts) < 5) { ?>
 
                                 <div class="swiper-slide post-item-swiper">
                                     <a href="#">
@@ -344,7 +392,6 @@
                     
                 </div>
             </div>
-
             <!-- Initialize Swiper -->
             <script>
                 var swiper = new Swiper('.swiper-container', {

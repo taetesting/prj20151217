@@ -153,6 +153,7 @@ function spacious_fancybox_script() {
     //source/jquery.fancybox-buttons.css
     wp_enqueue_script( 'script-fancybox-js', get_template_directory_uri() . '/js/jquery.fancybox.js' );
     wp_enqueue_style( 'style-fancybox-css', get_template_directory_uri() . '/css/jquery.fancybox.css' );
+    wp_enqueue_script( 'script-fancybox-media-js', get_template_directory_uri() . '/js/jquery.fancybox-media.js' );
     
     require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     if (is_plugin_active( 'gallery-categories/gallery-categories.php' )) {
@@ -160,7 +161,6 @@ function spacious_fancybox_script() {
         wp_dequeue_script('gllr_fancybox_mousewheel_js');
         wp_dequeue_script('gllr_fancybox_js');
     }
-    
 }
 
 
@@ -410,7 +410,7 @@ function add_ref_site_link( $items, $args ) {
     // } elseif (!is_user_logged_in() && $args->theme_location == 'primary') {
     //     $items .= '<li><a href="'. site_url('wp-login.php') .'">Log In</a></li>';
     // }
-    $items .= '<li class="ref-site-link menu-item menu-item-type-custom menu-item-object-custom menu-item-17"><a href="#"></a></li>';
+    $items .= '<li class="ref-site-link menu-item menu-item-type-custom menu-item-object-custom menu-item-17"><a href="http://nhaccusongmo.com/" target="_blank"></a></li>';
     return $items;
 }
 

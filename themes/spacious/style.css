@@ -1679,7 +1679,7 @@ li.default-menu {
     color: #666666;
 }
 .footer-socket-wrapper .copyright a:hover {
-    color: #0FBE7C;
+    color: #ee5a35;
 }
 .footer-socket-wrapper .small-menu {
     float: right;
@@ -2756,9 +2756,13 @@ a.course-item:hover .course-item-text {
 }
 .post-item-swiper {
     background: #f4f3f3;
+    overflow: hidden;
 }
 .post-item-swiper img {
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /*== HEADER BACKGROUND SLIDER ==*/
@@ -2806,9 +2810,9 @@ a.course-item:hover .course-item-text {
 .fancybox-lock .fancybox-overlay {
     overflow: hidden !important;
 }
-.fancybox-wrap .fancybox-skin {
+.fancybox-skin {
     /*width: 100% !important;*/
-    /*background: #232323;*/
+    background: #000 !important;
 }
 .fancybox-wrap iframe {
     width: 720px;
@@ -2894,4 +2898,23 @@ a.gallery-cate-item-wrapper:hover .gallery-cate-item {
 }
 .shrink .ref-site-link {
     height: 30px;
+}
+a.video-item-wrapper {
+    background: url("img/play-icon-w.png") no-repeat 50% 50%;
+}
+a.video-item-wrapper:hover {
+    background: url("img/play-icon-o.png") no-repeat 50% 50%;
+}
+.post-item-swiper a {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+}
+.post-item-swiper img {
+/*    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;*/
 }
