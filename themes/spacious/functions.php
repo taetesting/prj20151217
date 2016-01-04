@@ -326,7 +326,14 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
 
                             $images_id = get_post_meta( $post->ID, '_gallery_images', true );
 
-                            $posts = get_posts( array(                              
+                            //get Gallery Item Cate
+                            global $gllrctgrs_taxonomy;
+                            $galleryCateArr = get_the_terms( $post->ID, $gllrctgrs_taxonomy );
+                            if (count($galleryCateArr)) {
+                                $galleryCate = $galleryCateArr[0];
+                            }
+
+                            $posts = get_posts( array(
                                 "showposts"         =>  -1,
                                 "what_to_show"      =>  "posts",
                                 "post_status"       =>  "inherit",
@@ -336,7 +343,7 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
                                 "post_mime_type"    =>  "image/jpeg,image/gif,image/jpg,image/png",
                                 'post__in'          => explode( ',', $images_id ),
                                 'meta_key'          => '_gallery_order_' . $post->ID
-                            ));         
+                            ));
 
                             if ( 0 < count( $posts ) ) {
                                 $count_image_block = 0; ?>
@@ -356,16 +363,21 @@ if ( ! function_exists ( 'x_get_gallery_photo_list' ) ) {
                                             $gllr_border_images = 0;
                                         }
                                     ?>
-                                            <div class="swiper-slide">
-                                                    <?php if ( ( $url_for_link = get_post_meta( $attachment->ID, $link_key, true ) ) != "" ) { ?>
-                                                        <a class="fancybox-photo-item" href="<?php echo $url_for_link; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" target="_blank">
+                                            <div class="swiper-slide post-item-swiper">
+                                                   
+
+                                                        <?php if ( ( $url_for_link = get_post_meta( $attachment->ID, $link_key, true ) ) != "" && $galleryCate->name == 'Video' ) { ?>
+
+                                                            <a class="fancybox-photo-item fancybox-media video-item-wrapper" href="<?php echo $url_for_link; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>"></a>
                                                             <img class="gallery-photo-item" width="<?php echo $gllr_options['gllr_custom_size_px'][1][0]; ?>" height="<?php echo $gllr_options['gllr_custom_size_px'][1][1]; ?>"  alt="<?php echo get_post_meta( $attachment->ID, $alt_tag_key, true ); ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" src="<?php echo $image_attributes[0]; ?>" />
-                                                        </a>
-                                                    <?php } else { ?>
-                                                        <a class="fancybox-photo-item" rel="gallery_fancybox<?php if ( 0 == $gllr_options['single_lightbox_for_multiple_galleries'] ) echo '_' . $post->ID; ?>" href="<?php echo $image_attributes_large[0]; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>">
+                                                            
+                                                        <?php } else { ?>
+
+                                                            <a class="fancybox-photo-item" rel="gallery_fancybox<?php if ( 0 == $gllr_options['single_lightbox_for_multiple_galleries'] ) echo '_' . $post->ID; ?>" href="<?php echo $image_attributes_large[0]; ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>"></a>
                                                             <img class="gallery-photo-item" alt="<?php echo get_post_meta( $attachment->ID, $alt_tag_key, true ); ?>" title="<?php echo get_post_meta( $attachment->ID, $key, true ); ?>" src="<?php echo $image_attributes[0]; ?>" rel="<?php echo $image_attributes_full[0]; ?>" />
-                                                        </a>
-                                                    <?php } ?>
+                                                            
+                                                        <?php } ?>
+
                                                 <?php if ( 1 == $gllr_options["image_text"] ) { ?>
                                                     <div style="width:<?php echo $gllr_options['gllr_custom_size_px'][1][0] + $gllr_border_images; ?>px;" class="gllr_single_image_text"><?php echo get_post_meta( $attachment->ID, $key, true ); ?>&nbsp;</div>
                                                 <?php } ?>
@@ -422,13 +434,14 @@ function my_enqueue($hook) {
             array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
 }
 
-
-add_action( 'wp_ajax_my_action', 'my_action_callback' );
-function my_action_callback() {
+add_action( 'wp_ajax_gallery_action', 'gallery_action_callback' );
+add_action( 'wp_ajax_nopriv_gallery_action', 'gallery_action_callback' );
+function gallery_action_callback() {
     global $wpdb; // this is how you get access to the database
     $galleryCode = $_GET['gallery_code'];
     if (!empty($galleryCode)) {
-        echo do_shortcode($galleryCode);
+        $content = do_shortcode($galleryCode);
+        echo $content;
         ?>
         <script>
             var swiper = new Swiper('.swiper-container', {
@@ -442,10 +455,31 @@ function my_action_callback() {
                                                 openEffect  : 'none',
                                                 closeEffect : 'none'
                                     });
+                                    jQuery('.fancybox-media')
+                                        .attr('rel', 'media-gallery')
+                                        .fancybox({
+                                            // beforeShow: function(){
+                                            //     jQuery(".fancybox-skin").css("backgroundColor","#000");
+                                            // },
+                                            openEffect  : 'none',
+                                            closeEffect : 'none',
+                                            prevEffect  : 'none',
+                                            nextEffect  : 'none',
+                                            arrows      : false,
+                                            helpers     : {
+                                                media       : {},
+                                                buttons     : {}
+                                            },
+                                            height      : 400,
+                                            width       : '100%',
+                                            margin      : 0,
+                                            padding     : 0
+                                        });
         </script>
         <?php
     }
 
     wp_die(); // this is required to terminate immediately and return a proper response
 }
+
 ?>
