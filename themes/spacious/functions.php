@@ -482,4 +482,55 @@ function gallery_action_callback() {
     wp_die(); // this is required to terminate immediately and return a proper response
 }
 
+// numbered pagination
+function pagination($pages = '', $range = 4)
+{  
+    $showitems = ($range * 2)+1;  
+
+    global $paged;
+    if(empty($paged)) $paged = 1;
+
+    if($pages == '')
+    {
+        global $wp_query;
+        $pages = $wp_query->max_num_pages;
+        if(!$pages) {
+            $pages = 1;
+        }
+    }   
+
+    if(1 != $pages) {
+        echo "<div class=\"pagination\"><span>Page ".$paged." of ".$pages."</span>";
+        if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
+        if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo; Previous</a>";
+
+        for ($i=1; $i <= $pages; $i++) {
+            if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )) {
+                echo ($paged == $i)? "<span class=\"current\">".$i."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a>";
+            }
+        }
+
+        if ($paged < $pages && $showitems < $pages) echo "<a href=\"".get_pagenum_link($paged + 1)."\">Next &rsaquo;</a>";  
+        if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($pages)."'>Last &raquo;</a>";
+        echo "</div>\n";
+    }
+}
+
+if ( ! function_exists( 'theme_post_thumbnail' ) ) :
+    function theme_post_thumbnail() {
+        if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+            return;
+        }
+        ?>
+        <a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
+            <?php the_post_thumbnail( 'post-thumbnail', array( 'alt' => the_title_attribute( 'echo=0' ) ) ); ?>
+        </a>
+        <?php 
+    }
+endif;
+
+function count_post() {
+    global $wp_query;
+    return $wp_query->current_post + 1 ;
+}
 ?>
