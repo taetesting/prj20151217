@@ -18,7 +18,7 @@
 	?>
 	<header class="entry-header">
 	<h2 class="entry-title">
-		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
+		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php echo mb_strimwidth(get_the_title(), 0, 36, '...'); ?></a>
 	</h2><!-- .entry-title -->
 	</header>
 	<?php
@@ -53,7 +53,7 @@
      		$image .= '<figure class="post-featured-image">';
   			$image .= '<a href="' . get_permalink() . '" title="'.the_title( '', '', false ).'">';
   			$image .= get_the_post_thumbnail( $post->ID, $featured, array( 'title' => esc_attr( $title_attribute ), 'alt' => esc_attr( $title_attribute ) ) ).'</a>';
-  			$image .= '<img width="300" height="300" src="'.get_template_directory_uri().'/img/sheet-music.jpg" class="attachment-featured-blog-large size-featured-blog-large wp-post-image" alt="'.$title_attribute.'" title="'.$title_attribute.'" >';
+  			$image .= '<img width="300" height="300" src="'.get_template_directory_uri().'/img/noimage.jpg" class="attachment-featured-blog-large size-featured-blog-large wp-post-image" alt="'.$title_attribute.'" title="'.$title_attribute.'" >';
   			$image .= '</figure>';
 
   			echo $image;

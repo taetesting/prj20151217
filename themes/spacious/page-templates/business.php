@@ -232,8 +232,8 @@
                     <h3>TIN TỨC & SỰ KIỆN</h3>
                 </div>
                 <div class="category-news">
-                    <a href="#" class="category-news-item">SHEET NHẠC</a>
-                    <a href="#" class="category-kt-item">KIẾN THỨC BỔ ÍCH</a>
+                    <a href="/sheet-nhac/" class="category-news-item">SHEET NHẠC</a>
+                    <a href="/kien-thuc/" class="category-kt-item">KIẾN THỨC BỔ ÍCH</a>
                     <div class="clearfix"></div>
                 </div>
                 <?php
@@ -358,29 +358,12 @@
                                         echo '</div>';
                                     }
                                 }
-
-                                if (isset($recentPosts) && count($recentPosts) < 5) { ?>
-
-                                <div class="swiper-slide post-item-swiper">
-                                    <a href="#">
-                                        <img src="<?= get_template_directory_uri() ?>/img/post-demo-01.jpg">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide post-item-swiper">
-                                    <a href="#">
-                                        <img src="<?= get_template_directory_uri() ?>/img/post-demo-02.jpg">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide post-item-swiper">
-                                    <a href="#">
-                                        <img src="<?= get_template_directory_uri() ?>/img/post-demo-03.jpg">
-                                    </a>
-                                </div>
-
-                                <?php
-                                }
                                 ?>
-
+                                <div class="swiper-slide post-item-swiper post-item-swiper-load-more">
+                                    <a href="/tin-tuc/">
+                                        Nhiều hơn...
+                                    </a>
+                                </div>
                                 
                             </div>
                         </div>

@@ -9,7 +9,6 @@
  * @since Spacious 1.0
  */
 ?>
-
 <section class="no-results not-found">
 
 	<div class="page-content">
@@ -24,9 +23,13 @@
 
 		<?php else : ?>
 
-			<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'spacious' ); ?></p>
-			<?php get_search_form(); ?>
-
+			<!-- <p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'spacious' ); ?></p>-->
+			<?php // get_search_form(); ?>
+			<div class="no-results-box">
+				<p>
+					Nội dung bạn xem đang được chúng tôi cập nhật, bạn có thể vui lòng quay lại vào một thời điểm khác
+				</p>
+			</div>
 		<?php endif; ?>
 	</div><!-- .page-content -->
 	

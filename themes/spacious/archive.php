@@ -71,8 +71,8 @@
 	    	width: auto;
 	    }
 	    .entry-header{
-	    	height: 86px;
-	    	overflow: hidden;
+	    	/*height: 86px;*/
+	    	/*overflow: hidden;*/
 	    }
 
 	</style>
@@ -103,7 +103,7 @@
 		</div><!-- #content -->
 	</div><!-- #primary -->
 	
-	<?php spacious_sidebar_select(); ?>
+	<?php // spacious_sidebar_select(); ?>
 	
 	<?php do_action( 'spacious_after_body_content' ); ?>
 

@@ -2956,3 +2956,17 @@ a.video-item-wrapper:hover {
     background: #ee5a35; /* Current page background */
     color:#fff;
 }
+.post-item-swiper-load-more a {
+    line-height: 196px;
+    color: #000;
+}
+.post-item-swiper-load-more a:hover {
+    color: #ee5a35;
+}
+.no-results-box {
+    max-width: 600px;
+    /*border: 1px solid #dcdcdc;*/
+    height: 200px;
+    text-align: center;
+    margin: 20px auto;
+}
