@@ -73,6 +73,7 @@
 	    .entry-header{
 	    	/*height: 86px;*/
 	    	/*overflow: hidden;*/
+	    	text-align: center;
 	    }
 
 	</style>
